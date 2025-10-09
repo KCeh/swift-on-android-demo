@@ -26,7 +26,7 @@ import com.karlo.ceh.swiftonandroiddemo.ui.theme.SwiftOnAndroidDemoTheme
 import kotlinx.coroutines.launch
 
 /**
- * Keep in mind is is just demo code
+ * Keep in mind this is just demo code
  */
 class MainActivity : ComponentActivity() {
 

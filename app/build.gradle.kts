@@ -9,7 +9,6 @@ android {
     compileSdk = 36
 
     ndkVersion = "27.3.13750724"
-    ndkPath = "/Users/karloceh/Library/Android/sdk/ndk/27.3.13750724"
 
     defaultConfig {
         applicationId = "com.karlo.ceh.swiftonandroiddemo"
