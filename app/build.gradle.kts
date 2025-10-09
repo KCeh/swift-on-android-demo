@@ -8,6 +8,8 @@ android {
     namespace = "com.karlo.ceh.swiftonandroiddemo"
     compileSdk = 36
 
+    ndkVersion = "27.3.13750724"
+
     defaultConfig {
         applicationId = "com.karlo.ceh.swiftonandroiddemo"
         minSdk = 31
@@ -16,6 +18,35 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags += ""
+            }
+        }
+        ndk {
+            abiFilters += listOf("arm64-v8a")
+        }
+    }
+
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+        }
+    }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("src/main/jniLibs")
+        }
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+            keepDebugSymbols += "**/libHelloWorld.so"
+        }
     }
 
     buildTypes {
