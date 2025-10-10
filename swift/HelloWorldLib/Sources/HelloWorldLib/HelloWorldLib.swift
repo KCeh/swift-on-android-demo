@@ -3,12 +3,8 @@
 
 import Foundation
 
-// Java_{package_with_underscores}_{ClassName}_{methodName}
-// example Java_com_karlo_ceh_swiftonandroiddemo_MainActivity_helloFromSwift
-
-
 func helloFromSwift() -> String {
-    return "Hello from Swift"
+    return "Hello from Swift 👋 \(#file) \(#function) \(#line) \(Date())"
 }
 
 @_cdecl("hello_from_swift")
