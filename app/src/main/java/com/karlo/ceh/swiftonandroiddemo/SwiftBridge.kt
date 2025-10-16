@@ -25,4 +25,6 @@ class SwiftBridge {
     }
 
     external fun getHelloFromSwift(): String
+
+    external fun generateException(): String
 }

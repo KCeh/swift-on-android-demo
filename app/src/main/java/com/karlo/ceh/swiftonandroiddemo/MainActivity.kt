@@ -56,6 +56,18 @@ class MainActivity : ComponentActivity() {
                             snackbarHostState.showSnackbar(message = message)
                         }
                     },
+                    onGenerateExceptionFromSwiftClick = {
+                        Log.d(TAG, "Button 'Generate exception from Swift' clicked")
+                        try {
+                            swiftBridge.generateException()
+                        } catch (ex: Exception) {
+                            val message = "Exception from Swift: ${ex.message}"
+                            Log.d(TAG, message)
+                            scope.launch {
+                                snackbarHostState.showSnackbar(message = message)
+                            }
+                        }
+                    },
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -67,6 +79,7 @@ class MainActivity : ComponentActivity() {
 fun GreetingScreen(
     snackbarHostState: SnackbarHostState,
     onGetHelloFromSwiftClick: () -> Unit,
+    onGenerateExceptionFromSwiftClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -87,8 +100,8 @@ fun GreetingScreen(
                     Text(text = "Get hello from Swift")
                 }
 
-                Button(onClick = { }) {
-                    Text(text = "Placeholder")
+                Button(onClick = onGenerateExceptionFromSwiftClick) {
+                    Text(text = "Generate exception from Swift")
                 }
 
                 Button(onClick = { }) {
@@ -106,7 +119,8 @@ fun GreetingScreenPreview() {
     SwiftOnAndroidDemoTheme {
         GreetingScreen(
             snackbarHostState = remember { SnackbarHostState() },
-            onGetHelloFromSwiftClick = { }
+            onGetHelloFromSwiftClick = { },
+            onGenerateExceptionFromSwiftClick = { },
         )
     }
 }

@@ -16,3 +16,10 @@ target_link_libraries(swiftbridge
         log
         HelloWorld  # Link by name
 )
+
+target_link_libraries(swiftbridge
+        PRIVATE
+        android
+        log
+        GenerateException  # Link by name
+)
