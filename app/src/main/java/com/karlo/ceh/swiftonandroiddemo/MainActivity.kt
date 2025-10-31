@@ -40,6 +40,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        swiftBridge.initializeLogging()
+
         setContent {
             val snackbarHostState = remember { SnackbarHostState() }
             val scope = rememberCoroutineScope()
@@ -68,6 +70,10 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     },
+                    onSwiftLoggingClick = {
+                        Log.d(TAG, "Button 'Read logs from Swift' clicked")
+                        swiftBridge.swiftLogging()
+                    },
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -80,6 +86,7 @@ fun GreetingScreen(
     snackbarHostState: SnackbarHostState,
     onGetHelloFromSwiftClick: () -> Unit,
     onGenerateExceptionFromSwiftClick: () -> Unit,
+    onSwiftLoggingClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -104,8 +111,8 @@ fun GreetingScreen(
                     Text(text = "Generate exception from Swift")
                 }
 
-                Button(onClick = { }) {
-                    Text(text = "Placeholder")
+                Button(onClick = onSwiftLoggingClick) {
+                    Text(text = "Read logs from Swift")
                 }
             }
         }
@@ -121,6 +128,7 @@ fun GreetingScreenPreview() {
             snackbarHostState = remember { SnackbarHostState() },
             onGetHelloFromSwiftClick = { },
             onGenerateExceptionFromSwiftClick = { },
+            onSwiftLoggingClick = { },
         )
     }
 }

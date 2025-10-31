@@ -23,3 +23,10 @@ target_link_libraries(swiftbridge
         log
         GenerateException  # Link by name
 )
+
+target_link_libraries(swiftbridge
+        PRIVATE
+        android
+        log
+        JustLogs  # Link by name
+)
