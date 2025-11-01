@@ -38,6 +38,13 @@ jint callSwiftAndPropagate(JNIEnv *env, SwiftFunc swiftFunc) {
     return res;
 }
 
+jstring swiftStringToJString(JNIEnv *env, const char *(*swiftFunc)()) {
+    const char *message = swiftFunc();
+    jstring result = env->NewStringUTF(message);
+    free_string(message);
+    return result;
+}
+
 void redirectStdoutToLogcat() {
     // Disable buffering to flush immediately
     setvbuf(stdout, nullptr, _IONBF, 0);
@@ -59,21 +66,16 @@ void redirectStdoutToLogcat() {
     }).detach();
 }
 
-extern "C" JNIEXPORT jstring
-JNICALL
+extern "C" JNIEXPORT jstring JNICALL
 Java_com_karlo_ceh_swiftonandroiddemo_SwiftBridge_getHelloFromSwift(
         JNIEnv *env,
         jobject /* this */) {
 
-    const char *message = hello_from_swift();
-    jstring result = env->NewStringUTF(message);
-    free_string(message);
+    return swiftStringToJString(env, hello_from_swift);
 
-    return result;
 }
 
-extern "C" JNIEXPORT jint
-JNICALL
+extern "C" JNIEXPORT jint JNICALL
 Java_com_karlo_ceh_swiftonandroiddemo_SwiftBridge_generateException(JNIEnv
 *env, jobject) {
     return callSwiftAndPropagate(env, generate_exception);

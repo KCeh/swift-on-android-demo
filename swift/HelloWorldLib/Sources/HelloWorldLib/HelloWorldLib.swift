@@ -7,13 +7,16 @@ func helloFromSwift() -> String {
     return "Hello from Swift 👋 \(#file) \(#function) \(#line) \(Date())"
 }
 
-@_cdecl("hello_from_swift")
-public func hello_from_swift() -> UnsafePointer<CChar> {
-    let message = helloFromSwift()
-    guard let cString = strdup(message) else {
+public func toCString(_ string: String) -> UnsafePointer<CChar> {
+    guard let cString = strdup(string) else {
         return UnsafePointer(strdup(""))
     }
     return UnsafePointer(cString)
+}
+
+@_cdecl("hello_from_swift")
+public func hello_from_swift() -> UnsafePointer<CChar> {
+    toCString(helloFromSwift())
 }
 
 @_cdecl("free_string")
