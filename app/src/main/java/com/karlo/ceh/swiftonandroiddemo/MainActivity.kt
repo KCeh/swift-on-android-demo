@@ -73,6 +73,9 @@ class MainActivity : ComponentActivity() {
                     onSwiftLoggingClick = {
                         Log.d(TAG, "Button 'Read logs from Swift' clicked")
                         swiftBridge.swiftLogging()
+                        scope.launch {
+                            snackbarHostState.showSnackbar(message = "Check Logcat")
+                        }
                     },
                     modifier = Modifier.fillMaxSize()
                 )
