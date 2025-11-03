@@ -72,7 +72,6 @@ Java_com_karlo_ceh_swiftonandroiddemo_SwiftBridge_getHelloFromSwift(
         jobject /* this */) {
 
     return swiftStringToJString(env, hello_from_swift);
-
 }
 
 extern "C" JNIEXPORT jint JNICALL
