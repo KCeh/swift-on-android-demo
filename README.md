@@ -28,7 +28,7 @@ It is also possible to write JNI bridge in Swift. Or to use supporting libraries
 * `swift/` - Contains Swift packages source files with three libraries:
     * `HelloWorldLib/` - Basic string passing demo with file/function/line info
     * `GenerateExceptionLib/` - Swift error to Java exception mapping demo
-    * `JustLogsLib/` - Swift logging integration with Android Logcat
+    * `JustLogsLib/` - Swift logging integration with Android Logcat and demo for receiving number in Swift from Kotlin
 * `app/` - Main Android application module
     * `src/main/cpp/` - C++ JNI bridge implementation (`swiftbridge.cpp`, `CMakeLists.txt`)
     * `src/main/jniLibs/` - Pre-compiled native libraries (`.so` files)
@@ -59,7 +59,7 @@ It is also possible to write JNI bridge in Swift. Or to use supporting libraries
 Currently, you can try out:
 * Passing of string from Swift to Android. Including info about original source (file name, function name, line number and datetime)
 * Mapping Swift error to Java exception
-* Reading logs from Swift in Android Logcat
+* Reading logs from Swift in Android Logcat (by sending number from Kotlin/Android to Swift)
 
 <br>
 <img src="/resources/swift-on-android-demo.gif" alt="Demo app" width="320" height="640"/>

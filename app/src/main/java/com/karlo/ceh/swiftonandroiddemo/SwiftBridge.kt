@@ -31,4 +31,6 @@ class SwiftBridge {
     external fun swiftLogging()
 
     external fun initializeLogging()
+
+    external fun sendIntToSwift(value: Int)
 }

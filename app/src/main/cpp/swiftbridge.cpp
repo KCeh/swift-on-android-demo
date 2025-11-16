@@ -17,6 +17,7 @@ extern "C" {
     int32_t generate_exception(char *, int32_t);
     void register_swift_log_hook(void (*cb)(const char*));
     void swift_produce_logs();
+    void swift_receive_int(int32_t value);
 }
 
 extern "C" void android_log_callback(const char* message) {
@@ -92,4 +93,10 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_karlo_ceh_swiftonandroiddemo_SwiftBridge_swiftLogging(JNIEnv* env, jobject /* this */) {
     swift_produce_logs();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_karlo_ceh_swiftonandroiddemo_SwiftBridge_sendIntToSwift(JNIEnv* env, jobject /* this */, jint value) {
+    swift_receive_int((int32_t)value);
 }

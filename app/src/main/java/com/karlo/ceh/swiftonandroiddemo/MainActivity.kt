@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.karlo.ceh.swiftonandroiddemo.ui.theme.SwiftOnAndroidDemoTheme
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 /**
  * Keep in mind this is just demo code
@@ -71,8 +72,11 @@ class MainActivity : ComponentActivity() {
                         }
                     },
                     onSwiftLoggingClick = {
-                        Log.d(TAG, "Button 'Read logs from Swift' clicked")
+                        Log.d(TAG, "Send random number to Swift and read logs")
                         swiftBridge.swiftLogging()
+                        val random = Random.nextInt()
+                        Log.d(TAG, "Sending random number $random to Swift")
+                        swiftBridge.sendIntToSwift(random)
                         scope.launch {
                             snackbarHostState.showSnackbar(message = "Check Logcat")
                         }
@@ -115,7 +119,7 @@ fun GreetingScreen(
                 }
 
                 Button(onClick = onSwiftLoggingClick) {
-                    Text(text = "Read logs from Swift")
+                    Text(text = "Send random number to Swift and read logs")
                 }
             }
         }

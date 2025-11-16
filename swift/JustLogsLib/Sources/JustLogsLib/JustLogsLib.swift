@@ -34,3 +34,8 @@ public func swift_produce_logs() {
     swiftLog("Swift: Doing some work...")
     swiftLog("Swift: Finished successfully")
 }
+
+@_cdecl("swift_receive_int")
+public func swift_receive_int(_ value: Int32) {
+    swiftLog("Swift: Received integer from Kotlin \(value)")
+}
